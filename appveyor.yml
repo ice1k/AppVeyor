@@ -1,7 +1,7 @@
 image: Visual Studio 2017
 
 build_script:
-  - git clone $CLONE_URL proj
+  - git clone %CLONE_URL% proj
   - cd proj
   - mkdir win32
   - cd win32
@@ -10,4 +10,4 @@ build_script:
 
 artifacts:
   - path: 'proj\win32\*.exe'
-    name: executable
+    name: build
