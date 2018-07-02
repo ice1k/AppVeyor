@@ -3,7 +3,6 @@ image: Visual Studio 2017
 build_script:
   - git clone %CLONE_URL% proj
   - cd proj
-  - perl refresh_imgui.pl
   - mkdir win32
   - cd win32
   - cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 15 2017 Win64" ..
