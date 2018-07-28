@@ -4,20 +4,36 @@ build_script:
   - git clone %CLONE_URL% proj
   - cd proj
   - git submodule update --init --recursive
-  - mkdir win64
-  - cd win64
+  - mkdir win64-dx9
+  - cd win64-dx9
   - cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 15 2017 Win64" ..
   - msbuild huge.sln /t:Build /p:Configuration=Release
   - dir Release
   - cd ..
-  - mkdir win32
-  - cd win32
+  - mkdir win32-dx9
+  - cd win32-dx9
+  - cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 15 2017" ..
+  - msbuild huge.sln /t:Build /p:Configuration=Release
+  - dir Release
+  - cd ..
+  - mkdir win64-dx11
+  - cd win64-dx11
+  - cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 15 2017 Win64" ..
+  - msbuild huge.sln /t:Build /p:Configuration=Release
+  - dir Release
+  - cd ..
+  - mkdir win32-dx11
+  - cd win32-dx11
   - cmake -DCMAKE_BUILD_TYPE=Release -G "Visual Studio 15 2017" ..
   - msbuild huge.sln /t:Build /p:Configuration=Release
   - dir Release
 
 artifacts:
-  - path: 'proj\win32\Release\*.exe'
-    name: build32
-  - path: 'proj\win64\Release\*.exe'
-    name: build64
+  - path: 'proj\win32-dx9\Release\*.exe'
+    name: build32-dx9
+  - path: 'proj\win64-dx9\Release\*.exe'
+    name: build64-dx9
+  - path: 'proj\win32-dx11\Release\*.exe'
+    name: build32-dx11
+  - path: 'proj\win64-dx11\Release\*.exe'
+    name: build64-dx11
